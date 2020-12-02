@@ -26,10 +26,6 @@ init:
 
 full-clean:
 	@rm -Rf data/db/mysql/*
-<<<<<<< HEAD
-=======
-#	@rm -Rf $(MYSQL_DUMPS_DIR)/*
->>>>>>> api init
 	@make clean
 
 clean:
