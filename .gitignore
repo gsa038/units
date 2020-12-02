@@ -1,0 +1,13 @@
+# Global
+.*.swp
+.DS_Store
+
+#Application
+data/*
+logs/*
+web/vendor
+web/composer.lock
+api/src copy
+
+# VSCode
+.vscode/

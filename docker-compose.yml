@@ -1,0 +1,84 @@
+version: "3.6"
+
+services:
+  client:
+    container_name: client
+    image: nginx:latest
+    volumes:
+      - ./client:/var/www
+      - ./config/docker/client/site.conf:/etc/nginx/conf.d/site.conf.template
+      - ./logs/client:/var/log/nginx
+    ports:
+        - "8880:80"
+    environment:
+      - NGINX_HOST=${NGINX_HOST}
+    command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/site.conf.template > /etc/nginx/conf.d/site.conf && nginx -g 'daemon off;' && chown -R www-data /var/www"
+    restart: always
+    networks:
+      frontend:
+        ipv4_address: 10.10.68.3
+      default:
+  api:
+    container_name: api
+    image: nginx:latest
+    volumes:
+      - ./api:/var/www
+      - ./config/docker/api/site.conf:/etc/nginx/conf.d/site.conf.template
+      - ./logs:/var/log/nginx
+    ports:
+        - "8881:80"
+    environment:
+      - NGINX_HOST=${NGINX_HOST}
+    command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/site.conf.template > /etc/nginx/conf.d/site.conf && nginx -g 'daemon off;' && chown -R www-data /var/www"
+    restart: always
+    depends_on: 
+        - php
+        - mysql
+    networks:
+      frontend:
+        ipv4_address: 10.10.68.2
+      default:        
+  mysql:
+    image: mysql:latest
+    volumes:
+        - /data/db:/data/db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      default:
+  php:
+    build: ./config/docker/php
+    volumes:
+        - ./api:/var/www
+        - ./config/docker/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    restart: always
+  composer:
+    image: composer:latest
+    command: install
+    volumes:
+        - ./api:/app
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+        - "8882:80"
+    environment:
+        - PMA_ARBITRARY=1
+        - PMA_HOST=${MYSQL_HOST}
+    restart: always
+    depends_on:
+        - mysql
+    networks: 
+      default:
+networks:
+    frontend:
+      internal: false
+      ipam:
+       config:
+         - subnet: 10.10.68.0/24
+    default:
