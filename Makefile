@@ -42,8 +42,6 @@ composer-up:
 
 docker-start: init
 	docker-compose up -d
-#	sleep 90
-#	@make mysql-restore
 
 docker-stop:
 	@docker-compose down -v
