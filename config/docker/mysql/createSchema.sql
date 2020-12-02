@@ -1,17 +1,17 @@
-CREATE TABLE `entity` (
+CREATE TABLE `unity` (
           `id` int AUTO_INCREMENT PRIMARY KEY,
           `name` varchar(255) UNIQUE
         );
         
-        CREATE TABLE `entity_resource` (
-          `entity_id` int,
+        CREATE TABLE `unity_resource` (
+          `unity_id` int,
           `resource_name` varchar(255),
           `value` int,
           `value_name` varchar(255)
         );
         
-        CREATE TABLE `entity2tag` (
-          `entity_id` int,
+        CREATE TABLE `unity2tag` (
+          `unity_id` int,
           `tag_id` int
         );
         
@@ -28,10 +28,10 @@ CREATE TABLE `entity` (
           `priotity` int
         );
         
-        ALTER TABLE `entity_resource` ADD FOREIGN KEY (`entity_id`) REFERENCES `entity` (`id`);
+        ALTER TABLE `unity_resource` ADD FOREIGN KEY (`unity_id`) REFERENCES `unity` (`id`);
         
-        ALTER TABLE `entity2tag` ADD FOREIGN KEY (`entity_id`) REFERENCES `entity` (`id`);
+        ALTER TABLE `unity2tag` ADD FOREIGN KEY (`unity_id`) REFERENCES `unity` (`id`);
         
-        ALTER TABLE `entity2tag` ADD FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`);
+        ALTER TABLE `unity2tag` ADD FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`);
         
         ALTER TABLE `tag_rule` ADD FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`);

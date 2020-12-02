@@ -5,8 +5,8 @@
 #Application
 data/*
 logs/*
-web/vendor
-web/composer.lock
+api/vendor
+api/composer.lock
 api/src copy
 
 # VSCode
