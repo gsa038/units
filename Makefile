@@ -26,10 +26,6 @@ init:
 
 full-clean:
 	@rm -Rf data/db/mysql/*
-<<<<<<< HEAD
-=======
-#	@rm -Rf $(MYSQL_DUMPS_DIR)/*
->>>>>>> api init
 	@make clean
 
 clean:
@@ -46,8 +42,6 @@ composer-up:
 
 docker-start: init
 	docker-compose up -d
-#	sleep 90
-#	@make mysql-restore
 
 docker-stop:
 	@docker-compose down -v
