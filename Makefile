@@ -17,7 +17,7 @@ help:
 	@echo "  docker-start        Create and start containers"
 	@echo "  docker-stop         Stop and clear all services except db backups"
 	@echo "  logs                Follow log output"
-	@echo "  mysql-init          Create schema of units database"
+	@echo "  mysql-init          Create schema of unity database"
 	@echo "  mysql-dump          Create backup of all databases"
 	@echo "  mysql-restore       Restore backup of all databases"
 
