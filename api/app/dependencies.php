@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+use App\Domain\User\UserRepository;
+use App\Infrastructure\Persistence\User\InMemoryUserRepository;
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -24,18 +26,6 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $logger;
         },
-        PDO::class => function (ContainerInterface $container) {
-            $settings = $container->get('settings')['db'];
-        
-            $host = $settings['host'];
-            $dbname = $settings['dbname'];
-            $username = $settings['username'];
-            $password = $settings['password'];
-            $charset = $settings['charset'];
-            $flags = $settings['flags'];
-            $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
-        
-            return new PDO($dsn, $username, $password, $flags);
-        }
+        UserRepository::class => \DI\autowire(InMemoryUserRepository::class),
     ]);
 };
