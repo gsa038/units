@@ -12,7 +12,7 @@ class ResponseEmitter extends SlimResponseEmitter
     {
         $response = $response
             ->withHeader('Access-Control-Allow-Origin', 'http://client.localhost:8880')
-            ->withHeader('Access-Control-Allow-Methods', 'GET, OPTIONS, POST')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, OPTIONS, POST, UPDATE, DELETE, PATCH')
             ->withHeader('Access-Control-Allow-Headers', 'Content-Type');
 
         if (ob_get_contents()) {

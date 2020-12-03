@@ -1,10 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use App\Application\Actions\Entity\EntityCreateAction;
-use App\Application\Actions\Entity\ViewEntityByIdAction;
-use App\Application\Actions\Entity\ViewEntityByNameAction;
-use App\Application\Actions\User\ListUsersAction;
+use App\Application\Controller\Unity\UnityCreateAction;
+use App\Application\Controller\Unity\ViewUnityByIdAction;
+use App\Application\Controller\Unity\ViewUnityByNameAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -16,20 +15,10 @@ return function (App $app) {
         return $response;
     });
 
-    $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('Hello world!');
-        return $response;
-    });
-
-    $app->group('/users', function (Group $group) {
-        $group->get('', ListUsersAction::class);
-        $group->get('/{id}', ViewUserAction::class);
-    });
-
-    $app->group('/entity', function (Group $group) {
-        $group->post('', EntityCreateAction::class);
-        $group->get('/id/{id}', ViewEntityByIdAction::class);
-        $group->get('/name/{name}', ViewEntityByNameAction::class);
+    $app->group('/units', function (Group $group) {
+        $group->post('', UnityCreateAction::class);
+        $group->get('/units/{id}', ViewUnityByIdAction::class);
+        $group->get('/units/{name}', ViewUnityByNameAction::class);
     });
 
 };
