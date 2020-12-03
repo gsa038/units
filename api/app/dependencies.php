@@ -25,7 +25,6 @@ return function (ContainerBuilder $containerBuilder) {
             $logger->pushHandler($handler);
 
             return $logger;
-        },
-        UserRepository::class => \DI\autowire(InMemoryUserRepository::class),
+        }
     ]);
 };

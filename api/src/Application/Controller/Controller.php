@@ -41,12 +41,12 @@ abstract class Controller
      */
     protected function respondWithData($data = null, int $statusCode = 200): Response
     {
-        $payload = new ActionPayload($statusCode, $data);
+        $payload = new ControllerPayload($statusCode, $data);
 
         return $this->respond($payload);
     }
 
-    protected function respond(ActionPayload $payload): Response
+    protected function respond(ControllerPayload $payload): Response
     {
         $json = json_encode($payload, JSON_PRETTY_PRINT);
         $this->response->getBody()->write($json);
