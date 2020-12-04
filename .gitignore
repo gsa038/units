@@ -10,4 +10,4 @@ api/composer.lock
 api/src copy
 
 # VSCode
-.vscode/
+# .vscode/

@@ -34,10 +34,10 @@ DROP TABLE IF EXISTS `columns_priv`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `columns_priv` (
   `Host` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `Db` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `User` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `Table_name` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `Column_name` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Db` char(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `User` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Table_name` char(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Column_name` char(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Column_priv` set('Select','Insert','Update','References') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`Host`,`Db`,`User`,`Table_name`,`Column_name`)
@@ -86,8 +86,8 @@ DROP TABLE IF EXISTS `db`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db` (
   `Host` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `Db` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `User` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Db` char(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `User` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `Select_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',
   `Insert_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',
   `Update_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',
@@ -131,9 +131,9 @@ DROP TABLE IF EXISTS `default_roles`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `default_roles` (
   `HOST` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `USER` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `USER` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `DEFAULT_ROLE_HOST` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '%',
-  `DEFAULT_ROLE_USER` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `DEFAULT_ROLE_USER` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   PRIMARY KEY (`HOST`,`USER`,`DEFAULT_ROLE_HOST`,`DEFAULT_ROLE_USER`)
 ) /*!50100 TABLESPACE `mysql` */ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin STATS_PERSISTENT=0 ROW_FORMAT=DYNAMIC COMMENT='Default roles';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -184,9 +184,9 @@ DROP TABLE IF EXISTS `func`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `func` (
-  `name` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `name` char(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `ret` tinyint NOT NULL DEFAULT '0',
-  `dl` char(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `dl` char(128) COLLATE utf8_bin NOT NULL DEFAULT '',
   `type` enum('function','aggregate') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`name`)
 ) /*!50100 TABLESPACE `mysql` */ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin STATS_PERSISTENT=0 ROW_FORMAT=DYNAMIC COMMENT='User defined functions';
@@ -209,7 +209,7 @@ DROP TABLE IF EXISTS `global_grants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `global_grants` (
-  `USER` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `USER` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `HOST` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
   `PRIV` char(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   `WITH_GRANT_OPTION` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',
@@ -351,7 +351,7 @@ UNLOCK TABLES;
 --
 
 /*!40000 ALTER TABLE `innodb_index_stats` DISABLE KEYS */;
-INSERT  IGNORE INTO `innodb_index_stats` VALUES ('mysql','component','PRIMARY','2020-12-04 11:36:56','n_diff_pfx01',0,1,'component_id'),('mysql','component','PRIMARY','2020-12-04 11:36:56','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','component','PRIMARY','2020-12-04 11:36:56','size',1,NULL,'Number of pages in the index'),('mysql','gtid_executed','PRIMARY','2020-12-04 11:21:19','n_diff_pfx01',0,1,'source_uuid'),('mysql','gtid_executed','PRIMARY','2020-12-04 11:21:19','n_diff_pfx02',0,1,'source_uuid,interval_start'),('mysql','gtid_executed','PRIMARY','2020-12-04 11:21:19','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','gtid_executed','PRIMARY','2020-12-04 11:21:19','size',1,NULL,'Number of pages in the index'),('sys','sys_config','PRIMARY','2020-12-04 11:21:19','n_diff_pfx01',6,1,'variable'),('sys','sys_config','PRIMARY','2020-12-04 11:21:19','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('sys','sys_config','PRIMARY','2020-12-04 11:21:19','size',1,NULL,'Number of pages in the index'),('unity_db','tag','PRIMARY','2020-12-04 11:36:58','n_diff_pfx01',0,1,'id'),('unity_db','tag','PRIMARY','2020-12-04 11:36:58','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','tag','PRIMARY','2020-12-04 11:36:58','size',1,NULL,'Number of pages in the index'),('unity_db','tag','name','2020-12-04 11:36:58','n_diff_pfx01',0,1,'name'),('unity_db','tag','name','2020-12-04 11:36:58','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','tag','name','2020-12-04 11:36:58','size',1,NULL,'Number of pages in the index'),('unity_db','tag_rule','PRIMARY','2020-12-04 11:36:58','n_diff_pfx01',0,1,'tag_id'),('unity_db','tag_rule','PRIMARY','2020-12-04 11:36:58','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','tag_rule','PRIMARY','2020-12-04 11:36:58','size',1,NULL,'Number of pages in the index'),('unity_db','tag_rule','name','2020-12-04 11:36:58','n_diff_pfx01',0,1,'name'),('unity_db','tag_rule','name','2020-12-04 11:36:58','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','tag_rule','name','2020-12-04 11:36:58','size',1,NULL,'Number of pages in the index'),('unity_db','unity','PRIMARY','2020-12-04 11:38:16','n_diff_pfx01',4,1,'id'),('unity_db','unity','PRIMARY','2020-12-04 11:38:16','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity','PRIMARY','2020-12-04 11:38:16','size',1,NULL,'Number of pages in the index'),('unity_db','unity','name','2020-12-04 11:38:16','n_diff_pfx01',4,1,'name'),('unity_db','unity','name','2020-12-04 11:38:16','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity','name','2020-12-04 11:38:16','size',1,NULL,'Number of pages in the index'),('unity_db','unity2tag','GEN_CLUST_INDEX','2020-12-04 11:36:58','n_diff_pfx01',0,1,'DB_ROW_ID'),('unity_db','unity2tag','GEN_CLUST_INDEX','2020-12-04 11:36:58','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity2tag','GEN_CLUST_INDEX','2020-12-04 11:36:58','size',1,NULL,'Number of pages in the index'),('unity_db','unity2tag','tag_id','2020-12-04 11:36:58','n_diff_pfx01',0,1,'tag_id'),('unity_db','unity2tag','tag_id','2020-12-04 11:36:58','n_diff_pfx02',0,1,'tag_id,DB_ROW_ID'),('unity_db','unity2tag','tag_id','2020-12-04 11:36:58','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity2tag','tag_id','2020-12-04 11:36:58','size',1,NULL,'Number of pages in the index'),('unity_db','unity2tag','unity_id','2020-12-04 11:36:58','n_diff_pfx01',0,1,'unity_id'),('unity_db','unity2tag','unity_id','2020-12-04 11:36:58','n_diff_pfx02',0,1,'unity_id,DB_ROW_ID'),('unity_db','unity2tag','unity_id','2020-12-04 11:36:58','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity2tag','unity_id','2020-12-04 11:36:58','size',1,NULL,'Number of pages in the index'),('unity_db','unity_resource','GEN_CLUST_INDEX','2020-12-04 11:36:58','n_diff_pfx01',0,1,'DB_ROW_ID'),('unity_db','unity_resource','GEN_CLUST_INDEX','2020-12-04 11:36:58','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity_resource','GEN_CLUST_INDEX','2020-12-04 11:36:58','size',1,NULL,'Number of pages in the index'),('unity_db','unity_resource','unity_id','2020-12-04 11:36:58','n_diff_pfx01',0,1,'unity_id'),('unity_db','unity_resource','unity_id','2020-12-04 11:36:58','n_diff_pfx02',0,1,'unity_id,DB_ROW_ID'),('unity_db','unity_resource','unity_id','2020-12-04 11:36:58','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity_resource','unity_id','2020-12-04 11:36:58','size',1,NULL,'Number of pages in the index');
+INSERT  IGNORE INTO `innodb_index_stats` VALUES ('mysql','component','PRIMARY','2020-12-03 09:43:02','n_diff_pfx01',0,1,'component_id'),('mysql','component','PRIMARY','2020-12-03 09:43:02','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','component','PRIMARY','2020-12-03 09:43:02','size',1,NULL,'Number of pages in the index'),('mysql','gtid_executed','PRIMARY','2020-12-03 09:43:02','n_diff_pfx01',0,1,'source_uuid'),('mysql','gtid_executed','PRIMARY','2020-12-03 09:43:02','n_diff_pfx02',0,1,'source_uuid,interval_start'),('mysql','gtid_executed','PRIMARY','2020-12-03 09:43:02','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','gtid_executed','PRIMARY','2020-12-03 09:43:02','size',1,NULL,'Number of pages in the index'),('sys','sys_config','PRIMARY','2020-12-03 09:43:02','n_diff_pfx01',6,1,'variable'),('sys','sys_config','PRIMARY','2020-12-03 09:43:02','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('sys','sys_config','PRIMARY','2020-12-03 09:43:02','size',1,NULL,'Number of pages in the index'),('unity_db','tag','PRIMARY','2020-12-03 09:45:04','n_diff_pfx01',0,1,'id'),('unity_db','tag','PRIMARY','2020-12-03 09:45:04','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','tag','PRIMARY','2020-12-03 09:45:04','size',1,NULL,'Number of pages in the index'),('unity_db','tag','name','2020-12-03 09:45:04','n_diff_pfx01',0,1,'name'),('unity_db','tag','name','2020-12-03 09:45:04','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','tag','name','2020-12-03 09:45:04','size',1,NULL,'Number of pages in the index'),('unity_db','tag_rule','PRIMARY','2020-12-03 09:45:05','n_diff_pfx01',0,1,'tag_id'),('unity_db','tag_rule','PRIMARY','2020-12-03 09:45:05','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','tag_rule','PRIMARY','2020-12-03 09:45:05','size',1,NULL,'Number of pages in the index'),('unity_db','tag_rule','name','2020-12-03 09:45:05','n_diff_pfx01',0,1,'name'),('unity_db','tag_rule','name','2020-12-03 09:45:05','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','tag_rule','name','2020-12-03 09:45:05','size',1,NULL,'Number of pages in the index'),('unity_db','unity','PRIMARY','2020-12-03 09:45:04','n_diff_pfx01',0,1,'id'),('unity_db','unity','PRIMARY','2020-12-03 09:45:04','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity','PRIMARY','2020-12-03 09:45:04','size',1,NULL,'Number of pages in the index'),('unity_db','unity','name','2020-12-03 09:45:04','n_diff_pfx01',0,1,'name'),('unity_db','unity','name','2020-12-03 09:45:04','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity','name','2020-12-03 09:45:04','size',1,NULL,'Number of pages in the index'),('unity_db','unity2tag','GEN_CLUST_INDEX','2020-12-03 09:45:05','n_diff_pfx01',0,1,'DB_ROW_ID'),('unity_db','unity2tag','GEN_CLUST_INDEX','2020-12-03 09:45:05','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity2tag','GEN_CLUST_INDEX','2020-12-03 09:45:05','size',1,NULL,'Number of pages in the index'),('unity_db','unity2tag','tag_id','2020-12-03 09:45:05','n_diff_pfx01',0,1,'tag_id'),('unity_db','unity2tag','tag_id','2020-12-03 09:45:05','n_diff_pfx02',0,1,'tag_id,DB_ROW_ID'),('unity_db','unity2tag','tag_id','2020-12-03 09:45:05','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity2tag','tag_id','2020-12-03 09:45:05','size',1,NULL,'Number of pages in the index'),('unity_db','unity2tag','unity_id','2020-12-03 09:45:05','n_diff_pfx01',0,1,'unity_id'),('unity_db','unity2tag','unity_id','2020-12-03 09:45:05','n_diff_pfx02',0,1,'unity_id,DB_ROW_ID'),('unity_db','unity2tag','unity_id','2020-12-03 09:45:05','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity2tag','unity_id','2020-12-03 09:45:05','size',1,NULL,'Number of pages in the index'),('unity_db','unity_resource','GEN_CLUST_INDEX','2020-12-03 09:45:04','n_diff_pfx01',0,1,'DB_ROW_ID'),('unity_db','unity_resource','GEN_CLUST_INDEX','2020-12-03 09:45:04','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity_resource','GEN_CLUST_INDEX','2020-12-03 09:45:04','size',1,NULL,'Number of pages in the index'),('unity_db','unity_resource','unity_id','2020-12-03 09:45:04','n_diff_pfx01',0,1,'unity_id'),('unity_db','unity_resource','unity_id','2020-12-03 09:45:04','n_diff_pfx02',0,1,'unity_id,DB_ROW_ID'),('unity_db','unity_resource','unity_id','2020-12-03 09:45:04','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('unity_db','unity_resource','unity_id','2020-12-03 09:45:04','size',1,NULL,'Number of pages in the index');
 /*!40000 ALTER TABLE `innodb_index_stats` ENABLE KEYS */;
 
 --
@@ -359,7 +359,7 @@ INSERT  IGNORE INTO `innodb_index_stats` VALUES ('mysql','component','PRIMARY','
 --
 
 /*!40000 ALTER TABLE `innodb_table_stats` DISABLE KEYS */;
-INSERT  IGNORE INTO `innodb_table_stats` VALUES ('mysql','component','2020-12-04 11:36:56',0,1,0),('mysql','gtid_executed','2020-12-04 11:21:19',0,1,0),('sys','sys_config','2020-12-04 11:21:19',6,1,0),('unity_db','tag','2020-12-04 11:36:58',0,1,1),('unity_db','tag_rule','2020-12-04 11:36:58',0,1,1),('unity_db','unity','2020-12-04 11:38:16',4,1,1),('unity_db','unity2tag','2020-12-04 11:36:58',0,1,2),('unity_db','unity_resource','2020-12-04 11:36:58',0,1,1);
+INSERT  IGNORE INTO `innodb_table_stats` VALUES ('mysql','component','2020-12-03 09:43:02',0,1,0),('mysql','gtid_executed','2020-12-03 09:43:02',0,1,0),('sys','sys_config','2020-12-03 09:43:02',6,1,0),('unity_db','tag','2020-12-03 09:45:04',0,1,1),('unity_db','tag_rule','2020-12-03 09:45:05',0,1,1),('unity_db','unity','2020-12-03 09:45:04',0,1,1),('unity_db','unity2tag','2020-12-03 09:45:05',0,1,2),('unity_db','unity_resource','2020-12-03 09:45:04',0,1,1);
 /*!40000 ALTER TABLE `innodb_table_stats` ENABLE KEYS */;
 
 --
@@ -371,9 +371,9 @@ DROP TABLE IF EXISTS `password_history`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_history` (
   `Host` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `User` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `User` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `Password_timestamp` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `Password` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `Password` text COLLATE utf8_bin,
   PRIMARY KEY (`Host`,`User`,`Password_timestamp` DESC)
 ) /*!50100 TABLESPACE `mysql` */ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin STATS_PERSISTENT=0 ROW_FORMAT=DYNAMIC COMMENT='Password history for user accounts';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -419,11 +419,11 @@ DROP TABLE IF EXISTS `procs_priv`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `procs_priv` (
   `Host` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `Db` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `User` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Db` char(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `User` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `Routine_name` char(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `Routine_type` enum('FUNCTION','PROCEDURE') CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `Grantor` varchar(288) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Routine_type` enum('FUNCTION','PROCEDURE') COLLATE utf8_bin NOT NULL,
+  `Grantor` varchar(288) COLLATE utf8_bin NOT NULL DEFAULT '',
   `Proc_priv` set('Execute','Alter Routine','Grant') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Host`,`Db`,`User`,`Routine_name`,`Routine_type`),
@@ -449,11 +449,11 @@ DROP TABLE IF EXISTS `proxies_priv`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `proxies_priv` (
   `Host` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `User` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `User` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `Proxied_host` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `Proxied_user` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Proxied_user` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `With_grant` tinyint(1) NOT NULL DEFAULT '0',
-  `Grantor` varchar(288) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Grantor` varchar(288) COLLATE utf8_bin NOT NULL DEFAULT '',
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Host`,`User`,`Proxied_host`,`Proxied_user`),
   KEY `Grantor` (`Grantor`)
@@ -505,9 +505,9 @@ DROP TABLE IF EXISTS `role_edges`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `role_edges` (
   `FROM_HOST` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `FROM_USER` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `FROM_USER` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `TO_HOST` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `TO_USER` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `TO_USER` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `WITH_ADMIN_OPTION` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',
   PRIMARY KEY (`FROM_HOST`,`FROM_USER`,`TO_HOST`,`TO_USER`)
 ) /*!50100 TABLESPACE `mysql` */ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin STATS_PERSISTENT=0 ROW_FORMAT=DYNAMIC COMMENT='Role hierarchy and role grants';
@@ -689,10 +689,10 @@ DROP TABLE IF EXISTS `tables_priv`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tables_priv` (
   `Host` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `Db` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `User` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `Table_name` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `Grantor` varchar(288) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Db` char(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `User` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Table_name` char(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `Grantor` varchar(288) COLLATE utf8_bin NOT NULL DEFAULT '',
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Table_priv` set('Select','Insert','Update','Delete','Create','Drop','Grant','References','Index','Alter','Create View','Show view','Trigger') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   `Column_priv` set('Select','Insert','Update','References') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
@@ -845,7 +845,7 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `Host` char(255) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT '',
-  `User` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `User` char(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `Select_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',
   `Insert_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',
   `Update_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',
@@ -883,8 +883,8 @@ CREATE TABLE `user` (
   `max_updates` int unsigned NOT NULL DEFAULT '0',
   `max_connections` int unsigned NOT NULL DEFAULT '0',
   `max_user_connections` int unsigned NOT NULL DEFAULT '0',
-  `plugin` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT 'caching_sha2_password',
-  `authentication_string` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `plugin` char(64) COLLATE utf8_bin NOT NULL DEFAULT 'caching_sha2_password',
+  `authentication_string` text COLLATE utf8_bin,
   `password_expired` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',
   `password_last_changed` timestamp NULL DEFAULT NULL,
   `password_lifetime` smallint unsigned DEFAULT NULL,
@@ -1019,7 +1019,7 @@ CREATE TABLE `unity` (
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1028,7 +1028,6 @@ CREATE TABLE `unity` (
 
 LOCK TABLES `unity` WRITE;
 /*!40000 ALTER TABLE `unity` DISABLE KEYS */;
-INSERT INTO `unity` VALUES (1,'host-name-10.gsa.ru'),(4,'host-name-10.les.ru'),(2,'host-name-20.gsa.ru'),(5,'host-name-20.les.ru'),(3,'host-name-30.gsa.ru');
 /*!40000 ALTER TABLE `unity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1094,4 +1093,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-04 11:40:08
+-- Dump completed on 2020-12-03  9:46:04
