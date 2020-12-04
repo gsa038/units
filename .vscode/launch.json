@@ -7,7 +7,6 @@
         {
             "name": "Listen for XDebug",
             "type": "php",
-            "log": true,
             "request": "launch",
             "port": 9003,
             "pathMappings": {

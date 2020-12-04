@@ -12,7 +12,7 @@ return function (ContainerBuilder $containerBuilder) {
             'db' => [
                 'driver' => 'mysql',
                 'host' => 'mysql',
-                'dbname' => 'unity_db',
+                'database' => 'unity_db',
                 'username' => 'root',
                 'password' => 'Hjvfirf55',
                 'charset' => 'utf8mb4',
