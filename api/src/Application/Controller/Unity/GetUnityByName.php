@@ -7,13 +7,13 @@ use App\Application\Controller\Controller;
 use App\Domain\Unity\Unity;
 use Psr\Http\Message\ResponseInterface as Response;
 
-class ListAllUnits extends Controller
+class GetUnityByName extends Controller
 {
     protected function action($request, $response): Response
     {
-        $units = Unity::all()->sortBy('names')->toJson();
+        $units = Unity::where('name', $request->getAttribute('name'))->get()->toJson();
 
-        $this->logger->info("Units was returned.");
+        // $this->logger->info("Units was returned.");
 
         return $this->respondWithData(json_decode($units));
     }

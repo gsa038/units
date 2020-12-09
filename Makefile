@@ -3,8 +3,7 @@
 include .env
 
 # MySQL
-MYSQL_DUMPS_DIR=data/db/dumps
-MYSQL_SCHEMA_DIR=config/docker/mysql
+MYSQL_DUMPS_DIR=config/docker/mysql
 
 help:
 	@echo ""
@@ -51,7 +50,7 @@ logs:
 	@docker-compose logs -f
 
 mysql-init:
-	@docker exec $(shell docker-compose ps -q mysql) mysql -u"$(MYSQL_ROOT_USER)" -p"$(MYSQL_ROOT_PASSWORD)" < $(MYSQL_SCHEMA_DIR)/createSchema.sql 2>/dev/null
+	@docker exec $(shell docker-compose ps -q mysql) mysql -u"$(MYSQL_ROOT_USER)" -p"$(MYSQL_ROOT_PASSWORD)" < $(MYSQL_DUMPS_DIR)/db.sql 2>/dev/null
 
 mysql-dump:
 	@mkdir -p $(MYSQL_DUMPS_DIR)
