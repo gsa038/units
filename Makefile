@@ -28,13 +28,9 @@ full-clean:
 	@make clean
 
 clean:
-	@rm -Rf www
-	@rm -Rf web/vendor
-	@rm -Rf web/composer.lock
-	@rm -Rf web/doc
-	@rm -Rf web/report
+	@rm -Rf api/vendor
+	@rm -Rf api/composer.lock
 	@rm -Rf logs/*
-	@rm -Rf etc/ssl/*
 
 composer-up:
 	@docker run --rm -v $(shell pwd)/web/app:/app composer update

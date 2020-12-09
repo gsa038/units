@@ -3,9 +3,16 @@ declare(strict_types=1);
 
 namespace App\Domain\Unity;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Unity extends Model
+class Unity
 {
-    protected $table = 'unity';
+    protected int $id;
+
+    protected string $name;
+
+
+    /*
+     * property s
+     */
+    protected 
+
 }

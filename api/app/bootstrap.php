@@ -6,7 +6,6 @@ use App\Application\ResponseEmitter\ResponseEmitter;
 use DI\ContainerBuilder;
 use Slim\Factory\AppFactory;
 use Slim\Factory\ServerRequestCreatorFactory;
-use Illuminate\Database\Capsule\Manager as Capsule;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -24,12 +23,8 @@ $dependencies($containerBuilder);
 // Build PHP-DI Container instance
 $container = $containerBuilder->build();
 
-// Build Eloquent Capsule
-$dbSettings = $container->get('settings')['db'];
-$capsule = new Capsule;
-$capsule->addConnection($dbSettings);
-$capsule->bootEloquent();
-$capsule->setAsGlobal();
+// Add Eloquent Capsule
+require __DIR__ . '/../app/database.php';
 
 ob_start();
 // Instantiate the app
