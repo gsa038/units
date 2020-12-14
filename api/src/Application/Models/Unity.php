@@ -9,7 +9,7 @@ class Unity extends Model
 {
     protected $table = 'unity';
     protected $fillable = ['name'];
-    protected $hidden = ['pivot'];
+    protected $hidden = ['id', 'pivot'];
     protected array $resources;
     protected array $tags;
 

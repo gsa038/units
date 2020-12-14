@@ -9,7 +9,7 @@ class Tag extends Model
 {
     protected $table = 'tag';
     protected $fillable = ['name', 'value'];
-    protected $hidden = ['pivot'];
+    protected $hidden = ['id', 'pivot'];
 
     public function units()
     {

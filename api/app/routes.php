@@ -1,8 +1,7 @@
 <?php
 declare(strict_types=1);
 
-use App\Application\Controller\Unity\GetUnityById;
-use App\Application\Controller\Unity\GetUnityByName;
+use App\Application\Controller\TagRule\GetTagRuleByName;
 use App\Application\Controller\Unity\GetAllUnits;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -17,9 +16,9 @@ return function (App $app) {
 
     $app->group('/units', function (Group $group) {
         $group->get('', GetAllUnits::class);
-        $group->get('/id={id}', GetUnityById::class);
-        $group->get('/name={name}', GetUnityByName::class);
-        
+    });
+    $app->group('/rules', function (Group $group) {
+        $group->get('/{tagRuleName}', GetTagRuleByName::class);
     });
 
 };
