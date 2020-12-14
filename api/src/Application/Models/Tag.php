@@ -1,20 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Infrastructure\DBModels;
+namespace App\Application\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Infrastructure\DBModels\Unity;
-use App\Infrastructure\DBModels\TagRule;
 
 class Tag extends Model
 {
     protected $table = 'tag';
     protected $fillable = ['name', 'value'];
+    protected $hidden = ['pivot'];
 
     public function units()
     {
-      return $this->hasMany(Unity::class);
+      return $this->belongsToMany(Unity::class, 'unity2tag', 'tag_id', 'unity_id');
     }
 
     public function rules()
