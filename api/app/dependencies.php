@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-use App\Domain\User\UserRepository;
-use App\Infrastructure\Persistence\User\InMemoryUserRepository;
+use App\Domain\Unity\UnityRepository;
+use App\Infrastructure\Persistence\Unity\UnityRepositoryEloquent;
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -25,6 +25,7 @@ return function (ContainerBuilder $containerBuilder) {
             $logger->pushHandler($handler);
 
             return $logger;
-        }
+        },
+        UnityRepository::class => \DI\autowire(UnityRepositoryEloquent::class),
     ]);
 };
