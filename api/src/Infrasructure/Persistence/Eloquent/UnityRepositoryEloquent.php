@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Infrastructure\Persistence\Unity;
+namespace App\Infrastructure\Persistence\Eloquent;
 
 use App\Application\Models\Unity;
 use App\Domain\Unity\UnityRepository;

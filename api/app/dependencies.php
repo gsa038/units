@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use App\Domain\Unity\UnityRepository;
-use App\Infrastructure\Persistence\Unity\UnityRepositoryEloquent;
+use App\Infrastructure\Persistence\Eloquent\UnityRepositoryEloquent;
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
