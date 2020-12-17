@@ -12,11 +12,11 @@ class UnityRepositoryEloquent implements UnityRepository
     {
         $units = Unity::all();
         foreach ($units as $unity) {
-            $resources = Unity::find($unity->id)->resources;
+            $resources = Unity::find($unity->id)->resources->toArray();
             if (count($resources) > 0) {
                 $unity->resources = $resources;
             }
-            $tags = Unity::find($unity->id)->tags;
+            $tags = Unity::find($unity->id)->tags->toArray();
             if (count($tags) > 0) {
                 $unity->tags = $tags;
             }

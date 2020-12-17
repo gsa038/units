@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Application\Controller;
 
-use App\Domain\Unity\UnityRepository;
 use Exception;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -29,15 +28,15 @@ abstract class Controller
         $this->response = $response;
 
         try {
-            return $this->action($request, $response);
+            return $this->process($request, $response);
         } catch (Exception $e) {
             throw new HttpBadRequestException($this->request, $e->getMessage());
         }
     }
 
-    abstract protected function action(Request $request, Response $response): Response;
+    abstract protected function process(Request $request, Response $response): Response;
 
-        /**
+    /**
      * @param  array|object|null $data
      */
     protected function respondWithData($data = null, int $statusCode = 200): Response

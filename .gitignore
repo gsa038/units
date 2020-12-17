@@ -8,6 +8,7 @@ logs/*
 api/vendor
 api/composer.lock
 api/src copy
+api/logs/*.txt
 
 # VSCode
 # .vscode/

@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class GetAllUnits extends UnityController
 {
-    protected function action(ServerRequestInterface $request, Response $response): Response
+    protected function process(ServerRequestInterface $request, Response $response): Response
     {
         $units = $this->unityRepository->getAllUnits();
 

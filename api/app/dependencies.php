@@ -26,6 +26,6 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $logger;
         },
-        UnityRepository::class => \DI\autowire(UnityRepositoryEloquent::class),
+        UnityRepository::class => \DI\autowire(UnityRepositoryEloquent::class)
     ]);
 };

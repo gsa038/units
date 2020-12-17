@@ -12,7 +12,7 @@ use Slim\Exception\HttpNotFoundException;
 
 class GetTagRuleByName extends Controller
 {
-    protected function action(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
+    protected function process(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         $tagRuleName = $request->getAttribute('tagRuleName');
         if ($tagRuleName === null) {
