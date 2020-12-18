@@ -11,7 +11,7 @@ class ResponseEmitter extends SlimResponseEmitter
     public function emit(ResponseInterface $response): void
     {
         $response = $response
-            ->withHeader('Access-Control-Allow-Origin', 'http://client.localhost:8880')
+            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:8880')
             ->withHeader('Access-Control-Allow-Methods', 'GET, OPTIONS, POST, UPDATE, DELETE, PATCH')
             ->withHeader('Access-Control-Allow-Headers', 'Content-Type');
 

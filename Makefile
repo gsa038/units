@@ -31,6 +31,7 @@ clean:
 	@rm -Rf api/vendor
 	@rm -Rf api/composer.lock
 	@rm -Rf logs/*
+	@rm -Rf api/logs/*.txt
 
 composer-up:
 	@docker run --rm -v $(shell pwd)/web/app:/app composer update

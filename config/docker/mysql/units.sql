@@ -1,8 +1,8 @@
 CREATE TABLE `unity` (
-          `id` int AUTO_INCREMENT PRIMARY KEY,
-          `name` varchar(255) UNIQUE
-        );
-        
+  `id` int AUTO_INCREMENT,
+  `name` varchar(255) PRIMARY KEY
+);
+
 CREATE TABLE `unity_resource` (
   `unity_id` int,
   `resource_name` varchar(255),
@@ -16,15 +16,16 @@ CREATE TABLE `unity2tag` (
 );
 
 CREATE TABLE `tag` (
-  `id` int AUTO_INCREMENT PRIMARY KEY,
-  `name` varchar(255) UNIQUE,
-  `value` varchar(255)
+  `id` int AUTO_INCREMENT,
+  `name` varchar(255) PRIMARY KEY,
+  `category` varchar(255)
 );
 
 CREATE TABLE `tag_rule` (
-  `tag_id` int PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(255) UNIQUE,
-  `body` varchar(255),
+  `tag_id` int,
+  `name` varchar(255) PRIMARY KEY,
+  `unity_query` varchar(255),
+  `tag_query` varchar(255),
   `priotity` int
 );
 

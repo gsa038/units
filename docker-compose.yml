@@ -3,16 +3,21 @@ version: "3.6"
 services:
   client:
     container_name: client
-    image: nginx:latest
-    volumes:
-      - ./client:/var/www
-      - ./config/docker/client/site.conf:/etc/nginx/conf.d/site.conf.template
-      - ./logs/client:/var/log/nginx
+    build: ./client
+    # volumes:
+      # - ./client:/var/www
+      # - ./config/docker/client/site.conf:/etc/nginx/conf.d/site.conf.template
+      # - ./logs/client:/var/log/nginx
     ports:
-        - "8880:80"
+        - "8880:3000"
+    # environment:
+    #   - NGINX_HOST=${NGINX_HOST}
+    # command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/site.conf.template > /etc/nginx/conf.d/site.conf && nginx -g 'daemon off;' && chown -R www-data /var/www"
+    volumes:
+      - './client:/app'
+      - '/app/node_modules'
     environment:
-      - NGINX_HOST=${NGINX_HOST}
-    command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/site.conf.template > /etc/nginx/conf.d/site.conf && nginx -g 'daemon off;' && chown -R www-data /var/www"
+      - CHOKIDAR_USEPOLLING=true
     restart: always
     networks:
       frontend:
