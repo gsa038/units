@@ -29,7 +29,6 @@ let mapStateToProps = (state) => {
 export default compose(
     connect(
         mapStateToProps, 
-        { getUnits }),
-    withAuthRedirect
+        { getUnits })
 )
     (UnitsContainer);

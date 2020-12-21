@@ -10,7 +10,7 @@ class App extends React.Component {
       return <div className="preloaderArea"><Preloader /></div>
     } else {
       return (
-        <div className="app-wrapper"> 
+        <div className="app-wrapper">
           <UnitsContainer />
         </div>
       );

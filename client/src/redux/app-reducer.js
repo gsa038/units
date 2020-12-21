@@ -2,7 +2,7 @@ const SET_INITIALIZED = 'client/app/SET_INITIALIZED';
 
 
 let initialState = {
-    initialized: false
+    initialized: true
 };
 
 const appReducer = ( state = initialState, action) => {

@@ -5,12 +5,10 @@ let Units = ({ units, ...props }) => {
     return <div>
         <div className='' >
             {
-                units.map(unit => <Unit key={unit.name} user={unit} />)
+                units.map(unit => <Unit key={unit.name} unit={unit} />)
             }
         </div>
     </div>
 }
-
-
 
 export default Units;
